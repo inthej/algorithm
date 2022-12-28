@@ -38,8 +38,7 @@ const solution = (t, p) => {
 
 const ValueUtils = {}
 ValueUtils.empty = (str, includeBlank = true) => {
-  const empty =
-    str === null || str === undefined || (includeBlank && str === '')
+  const empty = str === null || str === undefined || (includeBlank && str === '')
   return empty
 }
 
