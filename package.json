@@ -1,0 +1,11 @@
+{
+  "name": "algorithm",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/inthej/algorithm.git",
+  "author": "inthej <inthej12@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^2.8.1"
+  }
+}
