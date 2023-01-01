@@ -30,41 +30,8 @@ s="aaabbaccccabba"인 경우 aaabbacc - ccab - ba와 같이 분해됩니다.
  */
 
 function solution(str) {
-  let result = 0
-  let headChar = undefined
-  let matchCount = 0
-  let unmatchedCount = 0
-  for (let index = 0; index < str.length; index++) {
-    const curChar = str[index]
-    const isLastIndex = index === str.length - 1
-    if (ValueUtils.empty(headChar)) {
-      headChar = curChar
-      matchCount = 1
-
-      if (isLastIndex) {
-        result++
-      }
-
-      continue
-    }
-
-    const isMatch = headChar === curChar
-    isMatch ? matchCount++ : unmatchedCount++
-
-    if (matchCount === unmatchedCount) {
-      headChar = ''
-      matchCount = 0
-      unmatchedCount = 0
-      result++
-      continue
-    }
-
-    if (isLastIndex) {
-      result++
-    }
-  }
-
-  return result
+  const strArr = ValueUtils.countCompareSplit(str)
+  return strArr.length
 }
 
 const ValueUtils = {}
@@ -77,16 +44,51 @@ ValueUtils.nonEmpty = (str, includeBlank = true) => {
   return ValueUtils.empty(str, includeBlank)
 }
 
-ValueUtils.nvl = (str, defaultValue = '') => {
-  if (ValueUtils.empty(str)) {
-    return defaultValue
+ValueUtils.countCompareSplit = (str) => {
+  if (str.length === 0) {
+    return []
   }
-  return str
+
+  const result = []
+  let head = ''
+  let sb = ''
+  let matchCount = 0
+  let unmatchedCount = 0
+  for (let index = 0; index < str.length; index++) {
+    const char = str[index]
+    const isLastIndex = index === str.length - 1
+    if (ValueUtils.empty(head)) {
+      head = char
+      sb = head
+      matchCount = 1
+
+      if (isLastIndex) {
+        result.push(sb)
+      }
+
+      continue
+    }
+
+    const isMatch = head === char
+    isMatch ? matchCount++ : unmatchedCount++
+    if (matchCount === unmatchedCount) {
+      result.push(sb)
+      head = ''
+      sb = ''
+      matchCount = 0
+      unmatchedCount = 0
+      continue
+    }
+
+    sb += char
+    if (isLastIndex) {
+      result.push(sb)
+    }
+  }
+
+  return result
 }
 
-ValueUtils.nvl2 = (str, str1, str2) => {
-  if (ValueUtils.empty(str)) {
-    return str2
-  }
-  return str1
-}
+console.log(solution('banana'))
+console.log(solution('abracadabra'))
+console.log(solution('aaabbaccccabba'))
