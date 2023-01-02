@@ -67,6 +67,5 @@ const solution = (str) => {
   return result
 }
 
-const dataSet = (data) => {
-  const dataMap = new Map()
-}
+console.log(solution('banana'))
+console.log(solution('foobar'))

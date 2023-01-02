@@ -38,11 +38,7 @@ function solution(k, scores) {
     const sortScoreList = scoreList.sort((a, b) => b - a)
     const minScore = sortScoreList[sortScoreList.length - 1]
     const kScore = size < k ? minScore : sortScoreList[k - 1]
-    infos.push({
-      day: scoreIndex + 1,
-      list: sortScoreList,
-      kScore: kScore,
-    })
+    infos.push({ day: scoreIndex + 1, list: sortScoreList, kScore: kScore })
   }
   return infos.map((info) => info.kScore)
 }

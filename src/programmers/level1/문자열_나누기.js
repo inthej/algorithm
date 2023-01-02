@@ -30,7 +30,7 @@ s="aaabbaccccabba"인 경우 aaabbacc - ccab - ba와 같이 분해됩니다.
  */
 
 function solution(str) {
-  const strArr = ValueUtils.countCompareSplit(str)
+  const strArr = ValueUtils.compareSplit(str)
   return strArr.length
 }
 
@@ -40,11 +40,7 @@ ValueUtils.empty = (str, includeBlank = true) => {
   return empty
 }
 
-ValueUtils.nonEmpty = (str, includeBlank = true) => {
-  return ValueUtils.empty(str, includeBlank)
-}
-
-ValueUtils.countCompareSplit = (str) => {
+ValueUtils.compareSplit = (str) => {
   if (str.length === 0) {
     return []
   }
