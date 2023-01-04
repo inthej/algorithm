@@ -28,19 +28,14 @@ function solution(ingredient) {
   for (const num of ingredient) {
     stack.push(num)
     if (num === AppConstants.BREAD_NUMBER && stack.length >= size) {
-      const n4 = stack.pop()
-      const n3 = stack.pop()
-      const n2 = stack.pop()
-      const n1 = stack.pop()
+      const [n1, n2, n3, n4] = stack.slice(-size)
       const n1234 = parseInt(`${n1}${n2}${n3}${n4}`)
       if (n1234 === AppConstants.HAMBURGER_NUMBER) {
+        for (let popCount = 0; popCount < size; popCount++) {
+          stack.pop()
+        }
         count++
-        continue
       }
-      stack.push(n1)
-      stack.push(n2)
-      stack.push(n3)
-      stack.push(n4)
     }
   }
   return count
