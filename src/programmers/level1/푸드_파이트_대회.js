@@ -1,5 +1,4 @@
 /*
-푸드 파이트 대회
 문제 설명
 수웅이는 매달 주어진 음식을 빨리 먹는 푸드 파이트 대회를 개최합니다. 이 대회에서 선수들은 1대 1로 대결하며, 매 대결마다 음식의 종류와 양이 바뀝니다. 대결은 준비된 음식들을 일렬로 배치한 뒤, 한 선수는 제일 왼쪽에 있는 음식부터 오른쪽으로, 다른 선수는 제일 오른쪽에 있는 음식부터 왼쪽으로 순서대로 먹는 방식으로 진행됩니다. 중앙에는 물을 배치하고, 물을 먼저 먹는 선수가 승리하게 됩니다.
 
@@ -35,10 +34,10 @@ function solution(food) {
   for (const [index, count] of rest.entries()) {
     const foodNumber = index + 1
     const eatableCount = Math.floor(count / 2)
-    const numberIterStr = ValueUtils.numericIteratorStr(foodNumber, eatableCount)
-    str += `${numberIterStr}`
+    const foodNumIterStr = ValueUtils.numericIteratorStr(foodNumber, eatableCount)
+    str += foodNumIterStr
   }
-  return `${str}${AppConstants.WATER_PREFIX}${str.split('').reverse().join('')}`
+  return `${str}${AppConstants.WATER_PREFIX}${[...str].reverse().join('')}`
 }
 
 const AppConstants = {}
@@ -47,10 +46,6 @@ AppConstants.WATER_PREFIX = '0'
 const ValueUtils = {}
 ValueUtils.numericIteratorStr = (num, count) => {
   let result = ''
-  if (count < 0) {
-    return result
-  }
-
   for (let n = 1; n <= count; n++) {
     result += num
   }
