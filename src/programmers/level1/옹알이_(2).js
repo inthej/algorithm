@@ -47,10 +47,9 @@ function isBabbling(str) {
   }
 
   if (
-    str.includes(`${AppTypes.BabblingType.aya}${AppTypes.BabblingType.aya}`) ||
-    str.includes(`${AppTypes.BabblingType.ye}${AppTypes.BabblingType.ye}`) ||
-    str.includes(`${AppTypes.BabblingType.woo}${AppTypes.BabblingType.woo}`) ||
-    str.includes(`${AppTypes.BabblingType.ma}${AppTypes.BabblingType.ma}`)
+    Object.keys(AppTypes.BabblingType)
+      .map((type) => AppTypes.BabblingType[type] + AppTypes.BabblingType[type])
+      .some((val) => str.includes(val))
   ) {
     return false
   }
