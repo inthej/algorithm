@@ -36,20 +36,15 @@ sizes	result
 명함들을 적절히 회전시켜 겹쳤을 때, 모든 명함을 포함하는 가장 작은 지갑의 크기는 133(=19 x 7)입니다.
  */
 function solution(sizes) {
-  let maxWidth = 0
-  let maxHeight = 0
-  for (const size of sizes) {
-    const [width, height] = size.sort((a, b) => b - a)
-    if (width > maxWidth) {
-      maxWidth = width
-    }
-
-    if (height > maxHeight) {
-      maxHeight = height
-    }
-  }
-  return maxWidth * maxHeight
+  const maxSize = [0, 0]
+  const sortSizes = sizes.map((size) => size.sort((a, b) => b - a))
+  sortSizes.forEach(([w, h]) => {
+    if (w > maxSize[0]) maxSize[0] = w
+    if (h > maxSize[1]) maxSize[1] = h
+  })
+  return maxSize[0] * maxSize[1]
 }
+
 console.log(
   solution([
     [60, 50],

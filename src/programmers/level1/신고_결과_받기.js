@@ -88,7 +88,8 @@ function solution(id_list, report_list, k) {
     let count = 0
     for (const val of reportMap.values()) {
       const { block, ids } = val
-      if (block && ids.findIndex((i) => i === id) > -1) {
+      const isReported = ids.findIndex((i) => i === id) > -1
+      if (block && isReported) {
         count++
       }
     }
