@@ -56,14 +56,14 @@ lottos	win_nums	result
 function solution(lottos, win_nums) {
   const duplicateNums = ValueUtils.duplicateArray(lottos, win_nums)
   const winCnt = duplicateNums.length
-  const removeCnt = lottos.reduce((acc, cur) => (cur === 0 ? acc + 1 : acc), 0)
-  const highRank = rank(winCnt, removeCnt)
-  const lowRank = rank(winCnt, 0)
+  const zeroCnt = lottos.reduce((acc, cur) => (cur === 0 ? acc + 1 : acc), 0)
+  const highRank = rank(winCnt, zeroCnt)
+  const lowRank = rank(winCnt)
   return [highRank, lowRank]
 }
 
-function rank(winCnt, removeCnt) {
-  const count = winCnt + removeCnt
+function rank(winCnt, zeroCnt = 0) {
+  const count = winCnt + zeroCnt
   switch (count) {
     case 6:
       return 1

@@ -23,10 +23,7 @@ signs가 [false,false,true] 이므로, 실제 수들의 값은 각각 -1, -2, 3�
 따라서 세 수의 합인 0을 return 해야 합니다.
  */
 function solution(absolutes, signs) {
-  const result = absolutes
-    .map((absolute, index) => (signs[index] ? absolute : -absolute))
-    .reduce((acc, cur) => acc + cur, 0)
-  return result
+  return absolutes.reduce((acc, cur, index) => acc + (signs[index] ? cur : -cur), 0)
 }
 
 console.log(solution([4, 7, 12], [true, false, true]))
