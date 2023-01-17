@@ -29,15 +29,15 @@ participant	completion	return
  */
 function solution(participants, completions) {
   const countMap = new Map()
-  participants.forEach((name) => {
-    const count = countMap.get(name)
-    countMap.set(name, (count || 0) + 1)
-  })
+  for (let index = 0; index < participants.length; index++) {
+    const key1 = participants[index]
+    const key2 = completions[index]
 
-  completions.forEach((name) => {
-    const count = countMap.get(name)
-    countMap.set(name, count - 1)
-  })
+    const val1 = countMap.get(key1)
+    const val2 = countMap.get(key2)
+    countMap.set(key1, (val1 || 0) + 1)
+    countMap.set(key2, (val2 || 0) - 1)
+  }
 
   let result = ''
   for (const [key, val] of countMap) {
