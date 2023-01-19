@@ -30,9 +30,9 @@ answers	return
 모든 사람이 2문제씩을 맞췄습니다.
  */
 function solution(answers) {
-  const countMap = new Map()
+  const studentMap = new Map()
   Object.keys(AppTypes.Soopoja).forEach((key) => {
-    countMap.set(key, {
+    studentMap.set(key, {
       answers: AppNames.SoopojaAnswers(AppTypes.Soopoja[key]),
       count: 0,
     })
@@ -40,20 +40,20 @@ function solution(answers) {
 
   for (const [index, answer] of answers.entries()) {
     Object.keys(AppTypes.Soopoja).forEach((key) => {
-      const value = countMap.get(key)
+      const value = studentMap.get(key)
       const { answers: studentAnswers, count } = value
       const studentAnswer = studentAnswers[index % studentAnswers.length]
       if (studentAnswer === answer) {
-        countMap.set(key, { ...value, count: count + 1 })
+        studentMap.set(key, { ...value, count: count + 1 })
       }
     })
   }
 
   const maxCount = Math.max.apply(
     null,
-    Array.from(countMap).map(([key, val]) => val.count),
+    Array.from(studentMap).map(([_, val]) => val.count),
   )
-  const result = Array.from(countMap)
+  const result = Array.from(studentMap)
     .filter(([_, val]) => val.count >= maxCount)
     .map(([key, _]) => AppTypes.Soopoja[key])
     .sort((a, b) => a - b)
