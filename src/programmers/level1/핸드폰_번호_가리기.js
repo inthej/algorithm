@@ -16,12 +16,12 @@ function solution(phone_number) {
 }
 
 const ValueUtils = {}
-ValueUtils.masking = (phoneNumber, digit, defaultValue = '*') => {
-  if (phoneNumber.length <= digit) {
-    return phoneNumber
+ValueUtils.masking = (str, showDigit, defaultValue = '*') => {
+  if (str.length <= showDigit) {
+    return str
   }
-  const head = phoneNumber.slice(0, -digit).replace(/./g, defaultValue)
-  const tail = phoneNumber.slice(-digit)
+  const head = defaultValue.repeat(str.length - showDigit)
+  const tail = str.slice(-showDigit)
   return `${head}${tail}`
 }
 
