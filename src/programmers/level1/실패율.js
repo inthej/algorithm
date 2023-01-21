@@ -48,29 +48,18 @@ N	stages	result
  */
 function solution(N, stages) {
   const stageMap = new Map()
-  Array.from({ length: N }, (_, idx) => idx + 1).forEach((n) => {
+  for (let n = 1; n <= N; n++) {
+    const total = stages.filter((stage) => stage >= n).length
     const count = stages.filter((stage) => stage === n).length
     stageMap.set(n, {
-      failure: 0,
+      failRate: count / total,
       count: count,
     })
-  })
-
-  let total = stages.length
-  for (let n = 1; n <= N; n++) {
-    const stage = stageMap.get(n)
-    const { count } = stage
-    const failure = count / total
-    stageMap.set(n, {
-      ...stage,
-      failure: failure,
-    })
-    total -= count
   }
 
   const result = Array.from(stageMap)
-    .sort((a, b) => b[1].failure - a[1].failure)
-    .map(([key, val]) => key)
+    .sort((a, b) => b[1].failRate - a[1].failRate)
+    .map(([key, _]) => key)
   return result
 }
 
