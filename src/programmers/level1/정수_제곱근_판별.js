@@ -18,15 +18,8 @@ n	return
 3은 양의 정수의 제곱이 아니므로, -1을 리턴합니다.
  */
 function solution(n) {
-  let result = -1
-  for (let x = 1; x <= Math.sqrt(n); x++) {
-    const num = Math.pow(x, 2)
-    if (num === n) {
-      result = Math.pow(x + 1, 2)
-      break
-    }
-  }
-  return result
+  const x = parseInt(Math.sqrt(n))
+  return Math.pow(x, 2) === n ? Math.pow(x + 1, 2) : -1
 }
 
 console.log(solution(121))
