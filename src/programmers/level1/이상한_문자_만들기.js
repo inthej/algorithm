@@ -16,20 +16,10 @@ s	return
 힌트가 필요한가요? [코딩테스트 연습 힌트 모음집]으로 오세요! → 클릭
  */
 function solution(s) {
-  let result = ''
-  const words = s.split(' ')
-  for (const [wordIndex, word] of words.entries()) {
-    const isLastIndex = wordIndex === words.length - 1
-    const str = word
-      .split('')
-      .map((s, sIndex) => (sIndex % 2 === 0 ? s.toUpperCase() : s.toLowerCase()))
-      .join('')
-    result += str
-    if (!isLastIndex) {
-      result += ' '
-    }
-  }
-  return result
+  return s
+    .split(' ')
+    .map((word) => [...word].map((str, index) => (index % 2 === 0 ? str.toUpperCase() : str.toLowerCase())).join(''))
+    .join(' ')
 }
 
 console.log(solution('try hello world'))
