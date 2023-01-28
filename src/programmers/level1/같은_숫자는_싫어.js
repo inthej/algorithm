@@ -19,15 +19,7 @@ arr	answer
 문제의 예시와 같습니다.
  */
 function solution(arr) {
-  const result = []
-  let previousNum = -1
-  for (const num of arr) {
-    if (num !== previousNum) {
-      result.push(num)
-      previousNum = num
-    }
-  }
-  return result
+  return arr.filter((num, index) => num !== arr[index + 1])
 }
 
 console.log(solution([1, 1, 3, 3, 0, 1, 1]))
