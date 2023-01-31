@@ -21,8 +21,9 @@
 도전 했지만 풀지 못한 문제 리스트 입니다.
 
 ## Programmers
-| level | name | note |
-|:-----:|:----:|:-----|
+| level |    name    | note |
+|:-----:|:----------:|:-----|
+|   1   | [1차] 다트 게임 |      |
 
 # Reference
 - 약수구하기: [https://mine-it-record.tistory.com/522](https://mine-it-record.tistory.com/522)
