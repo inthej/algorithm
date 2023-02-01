@@ -26,6 +26,9 @@ function solution(n) {
 
 const ValueUtils = {}
 ValueUtils.primeNumbers = (num) => {
+  if (num <= 1) {
+    return []
+  }
   const arr = Array.from({ length: num + 1 })
     .fill(true)
     .fill(false, 0, 2)
