@@ -64,9 +64,13 @@ keymap	targets	result
  */
 function solution(keymap, targets) {
   const pressCountMap = new Map()
+  initPressCountMap(keymap, pressCountMap)
+  return targets.map(target => calculatePressCount(target, pressCountMap))
+}
+
+function initPressCountMap(keymap, pressCountMap) {
   keymap.forEach(str => {
-    const chars = str.split('')
-    chars.forEach((ch, idx) => {
+    [...str].forEach((ch, idx) => {
       const curPressCount = idx + 1
       const pressCount = pressCountMap.get(ch)
       const minPressCount = ValueUtils.nonEmpty(pressCount) ? Math.min(pressCount, curPressCount)
@@ -74,20 +78,15 @@ function solution(keymap, targets) {
       pressCountMap.set(ch, minPressCount)
     })
   })
+}
 
-  return targets.map(target => {
-    let targetPressCount = 0
-    const chars = target.split('')
-    for (const ch of chars) {
-      if (!pressCountMap.has(ch)) {
-        targetPressCount = -1
-        break
-      }
-      const pressCount = pressCountMap.get(ch)
-      targetPressCount += pressCount
-    }
-    return targetPressCount
-  })
+function calculatePressCount(target, pressCountMap) {
+  let acc = 0
+  for (const ch of target) {
+    if (!pressCountMap.has(ch)) return -1
+    acc += pressCountMap.get(ch)
+  }
+  return acc
 }
 
 const ValueUtils = {
